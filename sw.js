@@ -1,5 +1,5 @@
 "use strict";
-// version 0.7
+// version 0.11
 
 // SW EVENTS
 // Download/Parsed
@@ -64,21 +64,19 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (e) => {
-  console.log("fetch", e);
+  //   console.log("fetch", e);
   const requestUrl = new URL(e.request.url);
   const requestPath = requestUrl.pathname;
   const fileName = requestPath.substring(requestPath.lastIndexOf("/") + 1);
 
   if (requestPath === latestPath || fileName === "sw.js") {
     // fetch from network only strategy
-    console.log(3);
     return e.respondWith(fetch(e.request));
   } else if (requestPath === imagePath) {
     // fetch first network then cache offline strategy
-    console.log(2);
     return e.respondWith(networkFirstStrategy(e.request));
   }
-  console.log(1);
+  // cache first then network strategy
   return e.respondWith(cacheFirstStrategy(e.request));
 });
 
@@ -116,3 +114,11 @@ const getCacheName = (request) => {
     return carDealsCacheName;
   }
 };
+
+self.addEventListener("message", (e) => {
+  console.log("Sw received message from Client: ", e.source.id, e.data);
+  e.source.postMessage({
+    clientId: e.source.id,
+    message: "hello client, its SW",
+  });
+});

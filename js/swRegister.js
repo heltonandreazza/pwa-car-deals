@@ -29,7 +29,7 @@ export default async () => {
     });
     console.log("new service worker found: ", swRegistration);
   });
-  //   an extra event that is fired when the service worker controlling this page changes through the self.skipWaiting()
+  // an extra event that is fired when the service worker controlling this page changes through the self.skipWaiting()
   navigator.serviceWorker.addEventListener("controllerchange", () => {
     console.log("Controller changed!");
   });
@@ -37,4 +37,14 @@ export default async () => {
   setInterval(() => {
     swRegistration.update();
   }, 1000 * 5);
+
+  navigator.serviceWorker.addEventListener("message", (e) => {
+    const clientId = e.data.clientId;
+    const message = e.data.message;
+    console.log("Client received message from SW: ", clientId, message);
+  });
+
+  if (navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage("hello SW, its client");
+  }
 };

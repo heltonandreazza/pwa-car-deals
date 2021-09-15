@@ -4,11 +4,13 @@
   "description": "",
   "main": "sw.js",
   "dependencies": {
-    "localforage": "^1.10.0"
+    "localforage": "^1.10.0",
+    "pwa-asset-generator": "^4.3.6"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildiosassets": "pwa-asset-generator ./logo.svg --background \"rgb(204, 60, 60)\" assets"
   },
   "keywords": [],
   "author": "",

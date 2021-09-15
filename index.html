@@ -3,7 +3,24 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, inital-scale=1" />
-    <link rel="stylesheet" type="text/css" href="/styles.css"
+    <link rel="stylesheet" type="text/css" href="/styles.css" />
+    <link rel="manifest" href="manifest.json" />
+    <!-- creating assets in runtime for splash screens and icons for Mobile Safari, as well as supporting IE/Edge's Pinned Sites feature. -->
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/pwacompat"
+      crossorigin="anonymous"
+    ></script>
+    <!-- config icon for ios -->
+    <link rel="apple-touch-icon" href="assets/apple-icon-180.png" />
+    <!-- remove url bar from ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- BANNER HEURISTCS
+    - user visited twice at least five minutes between visits
+    - web app manifest
+    - service worker
+    - HTTPS -->
   </head>
   <body>
     <script
