@@ -18,7 +18,7 @@ const carDealsCache = [
 ];
 const carDealsCacheFiles = [
   "https://cdn.jsdelivr.net/npm/pwacompat@2.0.17/pwacompat.min.js",
-  "node_modules/localforage/dist/localforage.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js",
   "js/app.js",
   "js/carPageService.js",
   "js/carService.js",
